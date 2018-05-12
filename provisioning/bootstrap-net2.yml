@@ -16,11 +16,6 @@
         state: installed
       loop: "{{ packages }}"
 
-    - name: teleport tower
-      get_url:
-        url: https://releases.ansible.com/ansible-tower/setup/ansible-tower-setup-latest.tar.gz
-        dest: /root/
-
     - name: permit root login
       lineinfile:
         path: /etc/ssh/sshd_config
@@ -43,13 +38,6 @@
       systemd:
         name: sshd
         state: restarted
-
-    - name: config host file for internal network
-      lineinfile:
-        path: /etc/hosts
-        line: "{{ item }}"
-        state: present
-      loop: "{{ env_hosts }}"
 
 ...
 

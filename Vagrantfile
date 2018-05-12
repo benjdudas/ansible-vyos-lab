@@ -28,7 +28,10 @@ Vagrant.configure("2") do |config|
       net_config.vm.provider "virtualbox" do |vb|
         vb.memory = "2000"
       end
-      net_config.vm.provision :shell, path: "./bootstrap/bootstrap-net2.sh"
+      net_config.vm.provision 'bootstrap', type: 'ansible' do |ansible|
+        ansible.compatibility_mode = "2.0"
+        ansible.playbook = './provisioning/bootstrap-net2.yml'
+      end
   end
 
    # create vyos_net1 router
