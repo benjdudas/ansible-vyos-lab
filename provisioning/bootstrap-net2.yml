@@ -5,10 +5,28 @@
 
   tasks:
 
-    - name: update root password
+    - name: creating ansible user
       user:
-        name: root
+        name: ansible
         password: "{{ admin_pass }}"
+        groups:
+          - wheel
+        state: present
+        shell: /bin/bash
+        system: no
+        createhome: yes
+        home: /home/ansible
+
+    - name: creating required folders
+      file:
+        path: /home/ansible/.ssh
+        state: directory
+        owner: ansible
+
+    - name: generating ansible user ssh keys
+      shell: ssh-keygen -b 2048 -t rsa -f /home/ansible/.ssh/id_rsa -q -N ""
+      args:
+        creates: /home/ansible/.ssh/id_rsa
 
     - name: installing required packages
       yum:

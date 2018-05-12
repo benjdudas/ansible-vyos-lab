@@ -1,0 +1,15 @@
+---
+- hosts: all
+  gather_facts: false
+  connection: local
+
+  tasks:
+
+    - name: create ansible user
+      vyos_user:
+        name: ansible
+        configured_password: "{{ admin_pass }}"
+        level: admin
+
+...
+

@@ -44,7 +44,10 @@ Vagrant.configure("2") do |config|
       net_config.vm.provider "virtualbox" do |vb|
         vb.memory = "512"
       end
-      net_config.vm.provision :shell, path: "./bootstrap/bootstrap-vyos.sh"
+      net_config.vm.provision 'bootstrap', type: 'ansible' do |ansible|
+        ansible.compatibility_mode = "2.0"
+        ansible.playbook = './provisioning/bootstrap-vyos.yml'
+      end
   end
 
   # create vyos_c1 router
@@ -58,7 +61,10 @@ Vagrant.configure("2") do |config|
       net_config.vm.provider "virtualbox" do |vb|
         vb.memory = "512"
       end
-      net_config.vm.provision :shell, path: "./bootstrap/bootstrap-vyos.sh"
+      net_config.vm.provision 'bootstrap', type: 'ansible' do |ansible|
+        ansible.compatibility_mode = "2.0"
+        ansible.playbook = './provisioning/bootstrap-vyos.yml'
+      end
   end
 
   # create vyos_net2_1 router
@@ -70,7 +76,10 @@ Vagrant.configure("2") do |config|
       net_config.vm.provider "virtualbox" do |vb|
         vb.memory = "512"
       end
-      net_config.vm.provision :shell, path: "./bootstrap/bootstrap-vyos.sh"
+      net_config.vm.provision 'bootstrap', type: 'ansible' do |ansible|
+        ansible.compatibility_mode = "2.0"
+        ansible.playbook = './provisioning/bootstrap-vyos.yml'
+      end
   end
 
   # create vyos_net2_2 router
@@ -82,7 +91,10 @@ Vagrant.configure("2") do |config|
       net_config.vm.provider "virtualbox" do |vb|
         vb.memory = "512"
       end
-      net_config.vm.provision :shell, path: "./bootstrap/bootstrap-vyos.sh"
+      net_config.vm.provision 'bootstrap', type: 'ansible' do |ansible|
+        ansible.compatibility_mode = "2.0"
+        ansible.playbook = './provisioning/bootstrap-vyos.yml'
+      end
   end
 
 end
