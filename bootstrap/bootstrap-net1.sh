@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 echo '===== Configuring Root Password ====='
-echo "ansible.123\ansible.123" | passwd root
+echo "ansible.123\nansible.123" | passwd root
 
 # install required packages
 #echo '===== Installing Required Packages ====='
