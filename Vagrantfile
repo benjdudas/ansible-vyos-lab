@@ -5,17 +5,17 @@
 
 Vagrant.configure("2") do |config|
 
-  # create net1 host
-  config.vm.define :net1 do |net_config|
+  # create mgmt host
+  config.vm.define :mgmt do |net_config|
       net_config.vm.box = "centos/7"
-      net_config.vm.hostname = "net1"
+      net_config.vm.hostname = "mgmt"
       net_config.vm.network :private_network, ip: "10.0.15.100"
       net_config.vm.provider "virtualbox" do |vb|
         vb.memory = "2000"
       end
       net_config.vm.provision 'bootstrap', type: 'ansible' do |ansible|
         ansible.compatibility_mode = "2.0"
-        ansible.playbook = './provisioning/bootstrap-net1.yml'
+        ansible.playbook = './provisioning/bootstrap-mgmt.yml'
       end
   end
 

@@ -28,12 +28,6 @@
       args:
         creates: /home/ansible/.ssh/id_rsa
 
-    - name: installing required packages
-      yum:
-        name: "{{ item }}"
-        state: installed
-      loop: "{{ packages }}"
-
     - name: permit root login
       lineinfile:
         path: /etc/ssh/sshd_config
