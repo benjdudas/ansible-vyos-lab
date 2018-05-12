@@ -1,0 +1,17 @@
+admin_pass: "ansible.123"
+
+packages:
+  - epel-release
+  - vim
+  - wget
+  - ansible
+  - python-pip
+  - net-tools
+
+env_hosts:
+  - 10.0.20.101 vyos-net1
+  - 10.10.10.2 vyos-c1
+  - 172.16.20.100 vyos-net2-1
+  - 172.16.30.100 vyos-net-2-2
+  - 192.168.10.100 net2
+

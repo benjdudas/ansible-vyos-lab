@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+echo $USER
 echo '===== Configuring Root Password ====='
 echo "ansible.123\nansible.123" | passwd root
 

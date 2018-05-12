@@ -3,7 +3,7 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-Vagrant.configure("6") do |config|
+Vagrant.configure("2") do |config|
 
   # create net1 host
   config.vm.define :net1 do |net_config|
@@ -13,7 +13,10 @@ Vagrant.configure("6") do |config|
       net_config.vm.provider "virtualbox" do |vb|
         vb.memory = "2000"
       end
-      net_config.vm.provision :shell, path: "./bootstrap/bootstrap-net1.sh"
+      net_config.vm.provision 'bootstrap', type: 'ansible' do |ansible|
+        ansible.compatibility_mode = "2.0"
+        ansible.playbook = './provisioning/bootstrap-net1.yml'
+      end
   end
 
   # create net2 host
