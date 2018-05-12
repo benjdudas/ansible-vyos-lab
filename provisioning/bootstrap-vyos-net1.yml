@@ -1,0 +1,55 @@
+---
+- hosts: all
+  gather_facts: false
+  become: yes
+
+  tasks:
+
+    - name: update root password
+      user:
+        name: root
+        password: "{{ admin_pass }}"
+
+    - name: installing required packages
+      yum:
+        name: "{{ item }}"
+        state: installed
+      loop: "{{ packages }}"
+
+    - name: teleport tower
+      get_url:
+        url: https://releases.ansible.com/ansible-tower/setup/ansible-tower-setup-latest.tar.gz
+        dest: /root/
+
+    - name: permit root login
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^#\s*PermitRootLogin.*$'
+        line: 'PermitRootLogin yes'
+
+    - name: allow password authentication
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^#\?*PasswordAuthentication.*$'
+        line: 'PasswordAuthentication yes'
+
+    - name: remove unwanted config
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^PasswordAuthentication no'
+        state: absent
+
+    - name: restart sshd service
+      systemd:
+        name: sshd
+        state: restarted
+
+    - name: config host file for internal network
+      lineinfile:
+        path: /etc/hosts
+        line: "{{ item }}"
+        state: present
+      loop: "{{ env_hosts }}"
+
+...
+
