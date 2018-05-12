@@ -3,7 +3,7 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-Vagrant.configure("2") do |config|
+Vagrant.configure("6") do |config|
 
   # create net1 host
   config.vm.define :net1 do |net_config|
@@ -13,7 +13,7 @@ Vagrant.configure("2") do |config|
       net_config.vm.provider "virtualbox" do |vb|
         vb.memory = "2000"
       end
-      net_conifg.vm.provision :shell, path: "bootstrap/bootstrap-net1.sh"
+      net_config.vm.provision :shell, path: "./bootstrap/bootstrap-net1.sh"
   end
 
   # create net2 host
@@ -25,7 +25,7 @@ Vagrant.configure("2") do |config|
       net_config.vm.provider "virtualbox" do |vb|
         vb.memory = "2000"
       end
-      net_config.vm.provision :shell, path: "bootstrap/bootstrap-net2.sh"
+      net_config.vm.provision :shell, path: "./bootstrap/bootstrap-net2.sh"
   end
 
    # create vyos_net1 router
@@ -38,7 +38,7 @@ Vagrant.configure("2") do |config|
       net_config.vm.provider "virtualbox" do |vb|
         vb.memory = "512"
       end
-      net_config.vm.provision :shell, path: "bootstrap/bootstrap-vyos.sh"
+      net_config.vm.provision :shell, path: "./bootstrap/bootstrap-vyos.sh"
   end
 
   # create vyos_c1 router
@@ -52,7 +52,7 @@ Vagrant.configure("2") do |config|
       net_config.vm.provider "virtualbox" do |vb|
         vb.memory = "512"
       end
-      net_config.vm.provision :shell, path: "bootstrap/bootstrap-vyos.sh"
+      net_config.vm.provision :shell, path: "./bootstrap/bootstrap-vyos.sh"
   end
 
   # create vyos_net2_1 router
@@ -64,7 +64,7 @@ Vagrant.configure("2") do |config|
       net_config.vm.provider "virtualbox" do |vb|
         vb.memory = "512"
       end
-      net_config.vm.provision :shell, path: "bootstrap/bootstrap-vyos.sh"
+      net_config.vm.provision :shell, path: "./bootstrap/bootstrap-vyos.sh"
   end
 
   # create vyos_net2_2 router
@@ -76,7 +76,7 @@ Vagrant.configure("2") do |config|
       net_config.vm.provider "virtualbox" do |vb|
         vb.memory = "512"
       end
-      net_config.vm.provision :shell, path: "bootstrap/bootstrap-vyos.sh"
+      net_config.vm.provision :shell, path: "./bootstrap/bootstrap-vyos.sh"
   end
 
 end
