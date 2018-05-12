@@ -62,7 +62,7 @@
         name: sshd
         state: restarted
 
-    - name: config host file for internal network
+    - name: configuring host file for env network
       lineinfile:
         path: /etc/hosts
         line: "{{ item }}"

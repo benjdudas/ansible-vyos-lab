@@ -5,7 +5,7 @@
 
   tasks:
 
-    - name: create ansible user
+    - name: creating ansible user
       vyos_user:
         name: ansible
         configured_password: "{{ admin_pass }}"
