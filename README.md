@@ -1,8 +1,8 @@
 # ansible-vyos-lab
 
 Requirements:
-  - VirtualBox/Docker
-  - Ansible
-  - Vagrant
+  - VirtualBox 5.2.8
+  - Ansible 2.5.x
+  - Vagrant 2.0.2
 
 
