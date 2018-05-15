@@ -27,6 +27,8 @@
       shell: ssh-keygen -b 2048 -t rsa -f /home/ansible/.ssh/id_rsa -q -N ""
       args:
         creates: /home/ansible/.ssh/id_rsa
+     become: yes
+     become_user: ansible
 
     - name: installing required packages
       yum:
@@ -68,6 +70,15 @@
         line: "{{ item }}"
         state: present
       loop: "{{ env_hosts }}"
+
+    - name: createing required playbook directory
+      git:
+        repo: https://github.com/benjdudas/vyos-lab-playbooks.git
+        clone: yes
+        dest: /home/ansible/playbooks
+      become: yes
+      become_user: ansible
+
 
 ...
 
