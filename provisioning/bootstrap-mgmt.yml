@@ -27,8 +27,8 @@
       shell: ssh-keygen -b 2048 -t rsa -f /home/ansible/.ssh/id_rsa -q -N ""
       args:
         creates: /home/ansible/.ssh/id_rsa
-     become: yes
-     become_user: ansible
+      become: yes
+      become_user: ansible
 
     - name: installing required packages
       yum:
