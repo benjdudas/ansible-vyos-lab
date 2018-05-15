@@ -11,5 +11,10 @@
         configured_password: "{{ admin_pass }}"
         level: admin
 
+    - name: enabling ssh
+      vyos_config:
+        lines:
+          - set service ssh port 22
+
 ...
 
