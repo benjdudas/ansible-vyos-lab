@@ -7,6 +7,7 @@ packages:
   - ansible
   - python-pip
   - net-tools
+  - git
 
 env_hosts:
   - 10.0.20.101 vyos-net1

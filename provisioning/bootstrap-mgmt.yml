@@ -71,11 +71,12 @@
         state: present
       loop: "{{ env_hosts }}"
 
-    - name: createing required playbook directory
+    - name: cloning playbooks
       git:
-        repo: https://github.com/benjdudas/vyos-lab-playbooks.git
+        repo: 'https://github.com/benjdudas/vyos-lab-playbooks.git'
         clone: yes
         dest: /home/ansible/playbooks
+        force: yes
       become: yes
       become_user: ansible
 
