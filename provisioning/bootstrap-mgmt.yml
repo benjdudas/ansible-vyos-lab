@@ -17,6 +17,17 @@
         createhome: yes
         home: /home/ansible
 
+    - name: changine file permissions on sudoers
+      path: /etc/sudoers
+      mode: 0600
+
+    - name: editing sudoers file
+      lineinfile:
+        path: /etc/sudoers
+        state: present
+        regexp: '^%wheel\s'
+        line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+
     - name: creating required folders
       file:
         path: /home/ansible/.ssh
@@ -35,6 +46,11 @@
         name: "{{ item }}"
         state: installed
       loop: "{{ packages }}"
+
+    - name: installing playbook dependencies
+      pip:
+        name: pexpect
+        version: 4.5.0
 
     - name: teleport tower
       get_url:
