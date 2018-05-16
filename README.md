@@ -7,7 +7,7 @@ Requirements:
 
 `see topology file for lab layout`
 
-What do do with this crap?:
+What to do with this lab?:
 - clone repo to local machine
 - move to cloned dir
 - vagrant up
