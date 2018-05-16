@@ -97,6 +97,15 @@
       become: yes
       become_user: ansible
 
+    - name: adding static routes
+      shell: "ip route add {{ item }}"
+      with_items:
+        - "10.10.10.0 netmask 255.255.255.0 gw 10.0.20.101"
+        - "172.16.20.0 netmask 255.255.255.0 gw 10.0.20.101"
+        - "172.16.30.0 netmask 255.255.255.0 gw 10.0.20.101"
+        - "192.168.10.0 netmask 255.255.255.0 gw 10.0.20.101"
+        - "192.168.10.0 netmask 255.255.255.0 gw 10.0.20.10"
+
 
 ...
 
