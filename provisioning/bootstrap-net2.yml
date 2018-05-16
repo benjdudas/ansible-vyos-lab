@@ -16,40 +16,47 @@
         system: no
         createhome: yes
         home: /home/ansible
+      changed_when: false
 
     - name: creating required folders
       file:
         path: /home/ansible/.ssh
         state: directory
         owner: ansible
+      changed_when: false
 
     - name: generating ansible user ssh keys
       shell: ssh-keygen -b 2048 -t rsa -f /home/ansible/.ssh/id_rsa -q -N ""
       args:
         creates: /home/ansible/.ssh/id_rsa
+      changed_when: false
 
-    - name: permit root login
+    - name: permiting root login
       lineinfile:
         path: /etc/ssh/sshd_config
         regexp: '^#\s*PermitRootLogin.*$'
         line: 'PermitRootLogin yes'
+      changed_when: false
 
-    - name: allow password authentication
+    - name: allowing password authentication
       lineinfile:
         path: /etc/ssh/sshd_config
         regexp: '^#\?*PasswordAuthentication.*$'
         line: 'PasswordAuthentication yes'
+      changed_when: false
 
-    - name: remove unwanted config
+    - name: removing unwanted config
       lineinfile:
         path: /etc/ssh/sshd_config
         regexp: '^PasswordAuthentication no'
         state: absent
+      changed_when: false
 
-    - name: restart sshd service
+    - name: restarting sshd service
       systemd:
         name: sshd
         state: restarted
+      changed_when: false
 
 ...
 

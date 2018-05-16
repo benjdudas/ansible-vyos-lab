@@ -8,6 +8,7 @@ packages:
   - python-pip
   - net-tools
   - git
+  - tmux
 
 env_hosts:
   - 10.0.20.101 vyos-net1

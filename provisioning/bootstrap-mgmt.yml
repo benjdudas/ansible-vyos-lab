@@ -16,11 +16,13 @@
         system: no
         createhome: yes
         home: /home/ansible
+      changed_when: false
 
     - name: changing file permissions on sudoers
       file:
         path: /etc/sudoers
         mode: 0600
+      changed_when: false
 
     - name: editing sudoers file
       lineinfile:
@@ -28,12 +30,14 @@
         state: present
         regexp: '^%wheel\s'
         line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+      changed_when: false
 
     - name: creating required folders
       file:
         path: /home/ansible/.ssh
         state: directory
         owner: ansible
+      changed_when: false
 
     - name: generating ansible user ssh keys
       shell: ssh-keygen -b 2048 -t rsa -f /home/ansible/.ssh/id_rsa -q -N ""
@@ -41,45 +45,53 @@
         creates: /home/ansible/.ssh/id_rsa
       become: yes
       become_user: ansible
+      changed_when: false
 
     - name: installing required packages
       yum:
         name: "{{ item }}"
         state: installed
       loop: "{{ packages }}"
+      changed_when: false
 
     - name: installing playbook dependencies
       pip:
         name: pexpect
         version: 4.5.0
+      changed_when: false
 
     - name: teleport tower
       get_url:
         url: https://releases.ansible.com/ansible-tower/setup/ansible-tower-setup-latest.tar.gz
         dest: /home/ansible/
+      changed_when: false
 
     - name: permit root login
       lineinfile:
         path: /etc/ssh/sshd_config
         regexp: '^#\s*PermitRootLogin.*$'
         line: 'PermitRootLogin yes'
+      changed_when: false
 
     - name: allow password authentication
       lineinfile:
         path: /etc/ssh/sshd_config
         regexp: '^#\?*PasswordAuthentication.*$'
         line: 'PasswordAuthentication yes'
+      changed_when: false
 
     - name: remove unwanted config
       lineinfile:
         path: /etc/ssh/sshd_config
         regexp: '^PasswordAuthentication no'
         state: absent
+      changed_when: false
 
     - name: restart sshd service
       systemd:
         name: sshd
         state: restarted
+      changed_when: false
 
     - name: configuring host file for env network
       lineinfile:
@@ -87,6 +99,7 @@
         line: "{{ item }}"
         state: present
       loop: "{{ env_hosts }}"
+      changed_when: false
 
     - name: cloning playbooks
       git:
@@ -96,15 +109,11 @@
         force: yes
       become: yes
       become_user: ansible
+      changed_when: false
 
-    - name: adding static routes
-      shell: "ip route add {{ item }}"
-      with_items:
-        - "10.10.10.0 netmask 255.255.255.0 gw 10.0.20.101"
-        - "172.16.20.0 netmask 255.255.255.0 gw 10.0.20.101"
-        - "172.16.30.0 netmask 255.255.255.0 gw 10.0.20.101"
-        - "192.168.10.0 netmask 255.255.255.0 gw 10.0.20.101"
-        - "192.168.10.0 netmask 255.255.255.0 gw 10.0.20.10"
+    - name: changing default gw
+      shell: "route add defalut gw 10.0.20.101 metric 1"
+      changed_when: false
 
 
 ...

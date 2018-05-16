@@ -12,7 +12,7 @@ What do do with this mess?:
 - move to cloned dir
 - vagrant up
 - connect to mgmt node (vagrant ssh mgmt)
-- switch to ansible user (su ansible) - playbooks are located in the home dir of ansible
+- switch to ansible user (sudo su /  su ansible) - playbooks are located in the home dir of ansible
 - test ssh to vyos-net1 (ssh-copy-id vyos-net1)
     - Password = ansible.123
 - move to playbook dir

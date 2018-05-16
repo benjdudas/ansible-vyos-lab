@@ -5,20 +5,6 @@
 
 Vagrant.configure("2") do |config|
 
-  # create mgmt host
-  config.vm.define :mgmt do |net_config|
-      net_config.vm.box = "centos/7"
-      net_config.vm.hostname = "mgmt"
-      net_config.vm.network :private_network, ip: "10.0.20.100"
-      net_config.vm.provider "virtualbox" do |vb|
-        vb.memory = "2000"
-      end
-      net_config.vm.provision 'bootstrap', type: 'ansible' do |ansible|
-        ansible.compatibility_mode = "2.0"
-        ansible.playbook = './provisioning/bootstrap-mgmt.yml'
-      end
-  end
-
   # create net2 host
   config.vm.define :net2 do |net_config|
       net_config.vm.box = "centos/7"
@@ -96,5 +82,20 @@ Vagrant.configure("2") do |config|
         ansible.playbook = './provisioning/bootstrap-vyos.yml'
       end
   end
+
+  # create mgmt host
+  config.vm.define :mgmt do |net_config|
+      net_config.vm.box = "centos/7"
+      net_config.vm.hostname = "mgmt"
+      net_config.vm.network :private_network, ip: "10.0.20.100"
+      net_config.vm.provider "virtualbox" do |vb|
+        vb.memory = "2000"
+      end
+      net_config.vm.provision 'bootstrap', type: 'ansible' do |ansible|
+        ansible.compatibility_mode = "2.0"
+        ansible.playbook = './provisioning/bootstrap-mgmt.yml'
+      end
+  end
+
 
 end

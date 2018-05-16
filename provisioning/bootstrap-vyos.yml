@@ -10,6 +10,7 @@
         name: ansible
         configured_password: "{{ admin_pass }}"
         level: admin
+      changed_when: false
 
     - name: enabling ssh
       vyos_config:
