@@ -26,7 +26,7 @@ traceroute to net2 (192.168.10.100), 30 hops max, 60 byte packets
 [root@mgmt vagrant]#
 
 ```
-- run ``vyos-routing.yml` (#ansible-playbook vyos-routing.yml)
+- run `vyos-routing.yml` (#ansible-playbook vyos-routing.yml)
 
 
 
