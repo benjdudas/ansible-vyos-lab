@@ -18,7 +18,7 @@ What to do with this lab?:
   - This will grab the current interface and routing config on vyos-net1
   - No ospf routes should be present and will be configured in the next playbook
 
-```json
+```
 ok: [vyos-net1] => {
     "msg": [
         [
@@ -39,7 +39,7 @@ ok: [vyos-net1] => {
 - run `vyos-routing.yml` (#ansible-playbook vyos-routing.yml)
 - rerun `vyos-info` until you see all routes confirged (this may take a few runs)
 
-```json
+```
 ok: [vyos-net1] => {
     "msg": [
         [
