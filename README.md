@@ -13,8 +13,6 @@ What to do with this lab?:
 - vagrant up
 - connect to mgmt node (vagrant ssh mgmt)
 - switch to ansible user (sudo su /  su ansible) - playbooks are located in the home dir of ansible
-- test ssh to vyos-net1 (ssh-copy-id vyos-net1)
-    - Password = ansible.123
 - move to playbook dir
 - grab a traceroute to `net2`
     - current route is not through vyos network:

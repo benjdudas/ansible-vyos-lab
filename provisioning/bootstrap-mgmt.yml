@@ -115,6 +115,15 @@
       shell: "route add defalut gw 10.0.20.101 metric 1"
       changed_when: false
 
+    - name: copying ssh key for vyos-net1
+      expect:
+        command: ssh-copy-id {{ item }}
+        responses:
+          'Are you sure you want to continue connecting (yes/no)?': 'yes\n'
+          '(?i)password:': '{{ admin_pass }}'
+      changed_when: false
+      loop:
+        - vyos-net1
 
 ...
 
