@@ -124,6 +124,8 @@
       changed_when: false
       loop:
         - vyos-net1
+      become: yes
+      become_user: ansible
 
 ...
 
