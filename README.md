@@ -14,7 +14,7 @@ What to do with this lab?:
 - connect to mgmt node (vagrant ssh mgmt)
 - switch to ansible user (sudo su /  su ansible) - playbooks are located in the home dir of ansible
 - move to playbook dir
-- run `vyos-info.yml`
+- run `vyos-info.yml` (ansible-playbook vyos-info.yml)
   - This will grab the current interface and routing config on vyos-net1
   - No ospf routes should be present and will be configured in the next playbook
 
