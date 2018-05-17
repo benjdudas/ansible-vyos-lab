@@ -10,7 +10,7 @@ Requirements:
 What to do with this lab?:
 - clone repo to local machine
 - move to cloned dir
-- vagrant up
+- Run `vagrant up` to launch lab
 - connect to mgmt node (vagrant ssh mgmt)
 - switch to ansible user (sudo su /  su ansible) - playbooks are located in the home dir of ansible
 - move to playbook dir
